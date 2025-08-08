@@ -14,13 +14,15 @@ TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text("Hello Ashis! 🤖 Bot is live and working perfectly.")
 
-def main():
+import asyncio
+
+async def main():
     app = ApplicationBuilder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
 
     logging.info("Bot is running... 🚀")
-    app.run_polling()
+    await app.run_polling()
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
